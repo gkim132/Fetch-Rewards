@@ -14,7 +14,7 @@ const database = {
 };
 
 app.get("/balance", (req, res) => {
-  res.json(dataBase.balance);
+  res.json(database.balance);
 });
 
 app.post("/transaction", (req, res) => {
