@@ -19,15 +19,15 @@ The API will return error when requests fail:
 
 # API Reference
 ### POST  /transaction
-- Creates a new transaction using the submitted payer, points and timestamp. 
-- Returns a list of transactions if the post succeeded. This call will return an error if incorrect transaction form submitted
+- Creates a new transaction using the submitted payer, points, and timestamp. 
+- Returns a list of transactions if the post succeeded. This call will return an error if incorrect transaction form submitted.
 ```
 curl -X POST 'localhost:5000/transaction' -H 'Content-Type: application/json' --data-raw '{ "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" }'
 ```
 
 ### POST  /spend
 - Spends points using the submitted points. 
-- Returns a list of { "payer": <string>, "points": <integer> } if the post succeeded. This call will return an error if incorrect transaction form submitted or if it exceeded the maximum balance
+- Returns a list of { "payer": <string>, "points": <integer> } if the post succeeded. This call will return an error if incorrect transaction form submitted or if it exceeded the maximum balance.
 ```
 curl -X POST 'localhost:5000/spend' -H 'Content-Type: application/json' --data-raw '{"points":5000}'
 ```
@@ -38,8 +38,8 @@ curl -X POST 'localhost:5000/spend' -H 'Content-Type: application/json' --data-r
 ]
   
 ### GET  /balance
-- Retrieves the current account balance
-- Returns all payer point balances
+- Retrieves the current account balance.
+- Returns all payer point balances.
 ```
 curl -X GET 'localhost:5000/balance'
 ```
