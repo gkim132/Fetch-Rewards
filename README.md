@@ -1,3 +1,4 @@
+# Guk Kim
 # Getting Started
 ## Pre-requisites 
 Node should be installed on their local machines.
