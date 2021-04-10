@@ -13,6 +13,10 @@ const database = {
   availablePoints: minHeap,
 };
 
+app.get("/balance", (req, res) => {
+  res.json(dataBase.balance);
+});
+
 app.post("/transaction", (req, res) => {
   const { payer, points, timestamp } = req.body;
   if (!payer || !points) {
