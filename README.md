@@ -24,7 +24,6 @@ The API will return error when requests fail:
 ```
 curl -X POST 'localhost:5000/transaction' -H 'Content-Type: application/json' --data-raw '{ "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" }'
 ```
-{ "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" }
 
 ### POST  /spend
 - Spends points using the submitted points. 
