@@ -40,7 +40,7 @@ app.post("/spend", (req, res) => {
     return res.status(400).json("incorrect spend form submitted");
   }
   if (spendPoints > database.totalBalance) {
-    return res.status(400).json("exceeding of the maximum balance");
+    return res.status(400).json("exceeded the maximum balance");
   }
   availablePointsHandler();
   let responseObj = {};
@@ -68,6 +68,17 @@ app.post("/spend", (req, res) => {
   res.json(response);
 });
 
+/**
+ * It implements Min Heap to handle negative points and get available points in order of timestamp 
+ * ex) 
+ * Transaction calls: { "payer": "DANNON", "points": 200, "timestamp": "1999-10-31T10:00:00Z" } 
+                      { "payer": "MILLER COORS", "points": 10000, "timestamp": "2000-11-01T14:00:00Z" }
+                      { "payer": "DANNON", "points": -200, "timestamp": "2020-10-31T15:00:00Z" } 
+ * Spend call: { "points": 5000 }
+ * Spend response: [ { "payer": "MILLER COORS", "points": -5,000 } ]
+ * Since the total of DANNON's points is 0 and the rule, "No payer's points to go negative", is given,
+    we don't want to use the 200 points with "timestamp": "1999-10-31T10:00:00Z"
+ */
 const availablePointsHandler = () => {
   database.transactions.sort((a, b) => {
     return a.timestamp > b.timestamp ? -1 : a.timestamp < b.timestamp ? 1 : 0;
