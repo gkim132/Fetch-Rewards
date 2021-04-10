@@ -27,7 +27,7 @@ curl -X POST 'localhost:5000/transaction' -H 'Content-Type: application/json' --
 
 ### POST  /spend
 - Spends points using the submitted points. 
-- Returns a list of { "payer": <string>, "points": <integer> } if the post succeeded. This call will return an error if incorrect transaction form submitted or if it exceeded the maximum balance.
+- Returns a list of { "payer": <string>, "points": <integer> } if the post succeeded. This call will return an error if incorrect spend form submitted or if it exceeded the maximum balance.
 ```
 curl -X POST 'localhost:5000/spend' -H 'Content-Type: application/json' --data-raw '{"points":5000}'
 ```
