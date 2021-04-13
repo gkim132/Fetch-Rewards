@@ -36,12 +36,14 @@ app.post("/transaction", (req, res) => {
 
 app.post("/spend", (req, res) => {
   let spendPoints = req.body.points;
+  console.log(database.totalBalance)
   if (spendPoints < 0) {
     return res.status(400).json("incorrect spend form submitted");
   }
   if (spendPoints > database.totalBalance) {
     return res.status(400).json("exceeded the maximum balance");
   }
+  database.balance -= spendPoints;
   availablePointsHandler();
   let responseObj = {};
   let response = [];
@@ -58,6 +60,7 @@ app.post("/spend", (req, res) => {
       responseObj[payer] ? (responseObj[payer] += -spendPoints) : (responseObj[payer] = -spendPoints);
       spendPoints = 0;
     }
+
   }
   for (const prop in responseObj) {
     response.push({
